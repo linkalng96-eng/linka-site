@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linka — Privacy Policy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; color: #333; background: #fafafa; }
+        .container { max-width: 720px; margin: 0 auto; padding: 40px 24px; }
+        h1 { font-size: 28px; margin-bottom: 8px; color: #1a1a1a; }
+        .date { color: #666; margin-bottom: 32px; font-size: 14px; }
+        h2 { font-size: 20px; margin-top: 32px; margin-bottom: 12px; color: #1a1a1a; }
+        p, li { margin-bottom: 12px; font-size: 16px; }
+        ul { padding-left: 24px; }
+        a { color: #4A90D9; }
+        .footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid #ddd; font-size: 14px; color: #666; }
+        .lang-switch { text-align: right; margin-bottom: 16px; font-size: 14px; }
+        .lang-switch a { margin-left: 8px; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<div class="lang-switch"><a href="#en">English</a> · <a href="#uk">Українська</a></div>
+
+<a id="en"></a>
+<h1>Privacy Policy</h1>
+<p class="date">Effective date: 2026-06-19</p>
+
+<p>Linka ("the App") is an English language learning application developed by Illia Sobcko ("we", "us"). This Privacy Policy describes how your information is handled when you use the App.</p>
+
+<h2>1. Summary</h2>
+<p>Linka is a privacy-first application. <strong>We do not operate any servers, do not collect analytics, and do not sell or share user data.</strong> Almost all data stays on your device. The only exceptions are: (a) lesson content you choose to generate via a third-party cloud AI provider, (b) speech you record for the voice-conversation feature, which — until the offline recognizer is downloaded — is transcribed by your device's system speech service (typically Google), (c) image searches you trigger if you supply an Unsplash key, and (d) anonymous crash reports if you do not opt out (see §6).</p>
+
+<h2>2. Information Stored Locally on Your Device</h2>
+<ul>
+    <li>User profile information (name, age range, learning level, interests, avatar) — stored in a local SQLite database</li>
+    <li>Vocabulary, flashcards, exercises, homework, and learning progress — stored locally</li>
+    <li>Saved lesson sessions and the items you mark "to revisit" — stored locally</li>
+    <li>API keys you provide for cloud AI services — stored in encrypted local storage (AES-256-GCM via Android Keystore)</li>
+    <li>Photos you capture for OCR text recognition — processed on-device by Google ML Kit; not uploaded</li>
+    <li>PDF / DOCX / PPTX / images you import for learning content — parsed locally</li>
+    <li>Voice recordings for the speaking practice / roleplay feature — see §3a below for how speech is transcribed</li>
+</ul>
+
+<h2>3. Third-Party Cloud AI Providers</h2>
+<p>The App can connect to one of the following AI providers <strong>only if you provide your own API key</strong>:</p>
+<ul>
+    <li>Google Gemini (gemini.google.com)</li>
+    <li>OpenAI (openai.com)</li>
+    <li>Anthropic Claude (anthropic.com)</li>
+    <li>Perplexity (perplexity.ai)</li>
+    <li>DeepSeek (deepseek.com)</li>
+</ul>
+<p>When you generate a lesson, exercise, hint, translation, or AI chat reply with a cloud provider:</p>
+<ul>
+    <li>The text of your request (vocabulary, topic name, your input, your profile summary used for personalization) is transmitted directly from your device to the chosen provider over HTTPS.</li>
+    <li>Each provider has its own privacy policy governing retention and use of that text. We have no control over their handling.</li>
+    <li>We do not act as an intermediary, we do not log requests, and we cannot read your prompts or responses.</li>
+    <li>No AI request is made without an action you initiate.</li>
+    <li>You can switch to the on-device provider at any time (see §4) — no data leaves your device in that mode.</li>
+</ul>
+
+<h2>3a. Voice Input (Speech Recognition)</h2>
+<p>The speaking-practice and roleplay features let you answer by speaking. Microphone audio is used <strong>only while you are actively in a voice exercise</strong>, and is never stored or uploaded by us.</p>
+<ul>
+    <li><strong>Offline recognizer (default once available):</strong> the App downloads a small open-source Vosk speech model (~40 MB) once, from alphacephei.com, and after that all speech recognition happens entirely on your device. No audio leaves the device.</li>
+    <li><strong>System recognizer (fallback):</strong> before the offline model finishes downloading, the App uses your device's built-in speech-to-text service (on most phones this is Google's). In that case the audio is processed by that system service under its own privacy policy. We never receive or store the audio.</li>
+    <li>Recognition only runs when you start a voice exercise, and stops when it ends.</li>
+</ul>
+
+<h2>3b. Optional Image Search (Unsplash)</h2>
+<p>If you supply your own Unsplash API key, the App may fetch an illustrative photo for a vocabulary word by sending that single word as a search term to Unsplash (api.unsplash.com) over HTTPS. Without a key, no image requests are made. We do not send any other data to Unsplash.</p>
+
+<h2>3c. External Apps You Choose to Open</h2>
+<p>From the text-selection menu you may choose to open selected text in an external app (e.g. Google Translate, a dictionary, or your browser). When you do, the selected text is handed to that app via an Android intent. This only happens on your explicit tap, and the receiving app handles the text under its own policy.</p>
+
+<h2>4. On-Device AI (Gemma 3n)</h2>
+<p>The App supports fully offline AI inference using Google's Gemma 3n model running through MediaPipe LiteRT on your device's CPU. When you choose on-device mode:</p>
+<ul>
+    <li>The model file (~3–4 GB) is downloaded once from HuggingFace to your device's app storage.</li>
+    <li>All generation happens locally on your CPU. No prompts, no responses, and no metadata leave your device.</li>
+    <li>You can enable automatic offline fallback in Settings — the App will route requests to the on-device model whenever your device is offline.</li>
+</ul>
+
+<h2>5. Permissions</h2>
+<ul>
+    <li><strong>Internet:</strong> only to call the cloud AI provider you selected and to download the Gemma model.</li>
+    <li><strong>Camera:</strong> only for capturing photos of text (homework, textbook pages) for OCR. Photos are processed on-device by Google ML Kit and are not uploaded.</li>
+    <li><strong>Microphone (Record audio):</strong> only for the speaking-practice and roleplay features, while a voice exercise is active. See §3a for how speech is transcribed.</li>
+    <li><strong>Storage / Media images:</strong> only to read files you choose to import for learning content.</li>
+    <li><strong>Notifications:</strong> for spaced-repetition reminders and lesson progress notifications scheduled by you.</li>
+    <li><strong>Foreground service:</strong> required so that long-running operations (model download, lesson preload, vocabulary grouping) continue when you put the App in the background.</li>
+    <li><strong>Receive boot completed:</strong> only to reschedule your spaced-repetition reminders after a device restart.</li>
+    <li><strong>Vibrate:</strong> for tactile feedback on review answers.</li>
+</ul>
+
+<h2>6. Crash Reporting</h2>
+<p>The App may include Sentry SDK for anonymous crash reports. Crash reports help us fix bugs and contain:</p>
+<ul>
+    <li>Stack trace of the crash</li>
+    <li>Device model, Android version, App version</li>
+    <li>Anonymous user ID generated locally by Sentry (not tied to your name or email)</li>
+</ul>
+<p>Crash reports never contain: your lesson content, vocabulary, API keys, photos, files you imported, or personal profile details.</p>
+<p>You can disable crash reporting at any time in Settings → Privacy → Crash reporting.</p>
+
+<h2>6a. Optional Cloud Sync (Sign in with Google)</h2>
+<p>Cloud sync is <strong>off unless you sign in</strong> under Settings → Backup. If you sign in with your Google account:</p>
+<ul>
+    <li><strong>What is stored on our server (Supabase, EU region):</strong> your email address and an account identifier; a copy of your learning data (vocabulary, review progress, exercise results, lessons, saved items, texts/books you imported, AI-chat and voice-dialog history, streak and statistics, completed topics) and reader appearance settings.</li>
+    <li><strong>Never uploaded:</strong> AI provider API keys, downloaded AI/speech models, generated audiobook audio, original PDF files.</li>
+    <li><strong>Purpose:</strong> only to back up your data and keep it in sync across your devices. It is not used for advertising, profiling or AI training, and is not sold or shared.</li>
+    <li><strong>Security:</strong> encrypted in transit (HTTPS); access is restricted per account by row-level security so only you can read your data. Up to the 5 most recent snapshots are kept.</li>
+    <li><strong>Deletion:</strong> Settings → Backup → Delete from cloud lets you delete the cloud copies only, or your cloud account together with all its data, immediately. You can also request deletion by email (see Contact). Local data on your phone is not affected.</li>
+</ul>
+
+<h2>7. Data Storage and Security</h2>
+<ul>
+    <li>User data is stored locally on your device; it is copied to the cloud only if you turn on Cloud Sync (section 6a).</li>
+    <li>API keys are encrypted with AES-256-GCM, with the encryption key held in Android Keystore (hardware-backed where supported).</li>
+    <li>Android system backup is disabled — your data is never uploaded to Google Drive automatically. The only cloud copy is the opt-in Cloud Sync described in section 6a.</li>
+    <li>Uninstalling the App deletes all locally stored data.</li>
+</ul>
+
+<h2>8. Children's Privacy</h2>
+<p>The App is not directed at children under 13. The interactive AI chat may produce content unsuitable for younger children. If a child uses the App, parental supervision is strongly recommended. We do not knowingly collect any personal information from children under 13.</p>
+
+<h2>9. Your Rights</h2>
+<ul>
+    <li><strong>Access &amp; export:</strong> Settings → Export contains your full profile and vocabulary as a downloadable file.</li>
+    <li><strong>Deletion:</strong> Settings → Profile → Delete profile removes all local data. Uninstalling the App removes everything stored on the device. Cloud data: Settings → Backup → Delete from cloud, or email us.</li>
+    <li><strong>Opt-out of crash reports:</strong> Settings → Privacy → Crash reporting.</li>
+    <li><strong>Stop cloud AI:</strong> Switch to on-device mode in Settings → AI provider.</li>
+</ul>
+
+<h2>10. Changes to This Policy</h2>
+<p>We may update this Privacy Policy. Any changes will be posted on this page with an updated effective date. Material changes will be announced in the App.</p>
+
+<h2>11. Contact</h2>
+<p>Questions about this Privacy Policy: <a href="mailto:linkalng96@gmail.com">linkalng96@gmail.com</a></p>
+
+<hr style="margin: 48px 0;">
+
+<a id="uk"></a>
+<h1>Політика конфіденційності</h1>
+<p class="date">Чинна з: 2026-06-19</p>
+
+<p>Linka («Застосунок») — це застосунок для вивчення англійської мови, розроблений Іллею Собцко («ми»). Ця Політика описує, як обробляється ваша інформація при використанні Застосунку.</p>
+
+<h2>1. Коротко</h2>
+<p>Linka — застосунок, що ставить приватність на перше місце. <strong>Ми не маємо власних серверів, не збираємо аналітику і не продаємо ваші дані.</strong> Майже всі дані залишаються на вашому пристрої. Винятки: (а) контент уроків, який ви свідомо генеруєте через хмарного AI-провайдера, (б) мовлення, яке ви записуєте для голосової практики — поки не завантажиться офлайн-розпізнавач, його транскрибує системний сервіс розпізнавання мовлення вашого пристрою (зазвичай Google), (в) пошук зображень, якщо ви ввели ключ Unsplash, і (г) анонімні звіти про збої, якщо ви не вимкнули їх (див. §6).</p>
+
+<h2>2. Дані, що зберігаються локально</h2>
+<ul>
+    <li>Профіль (імʼя, вікова група, рівень, інтереси, аватар) — у локальній SQLite базі</li>
+    <li>Слова, картки, вправи, домашні завдання, прогрес — локально</li>
+    <li>Збережені сесії уроків і елементи, позначені «розібрати пізніше» — локально</li>
+    <li>API-ключі для хмарних AI — у зашифрованому сховищі (AES-256-GCM через Android Keystore)</li>
+    <li>Фото для OCR — обробляються на пристрої через Google ML Kit і не вивантажуються</li>
+    <li>PDF / DOCX / PPTX / зображення, які ви імпортуєте — парсяться локально</li>
+    <li>Голосові записи для практики мовлення / roleplay — як саме транскрибується мовлення, див. §3a нижче</li>
+</ul>
+
+<h2>3. Хмарні AI-провайдери</h2>
+<p>Застосунок може звертатися до одного з провайдерів <strong>тільки якщо ви ввели власний API-ключ</strong>:</p>
+<ul>
+    <li>Google Gemini</li>
+    <li>OpenAI</li>
+    <li>Anthropic Claude</li>
+    <li>Perplexity</li>
+    <li>DeepSeek</li>
+</ul>
+<p>Коли ви генеруєте урок, вправу, переклад, підказку або відповідь чату через хмарного провайдера:</p>
+<ul>
+    <li>Текст запиту (слова, тема, ваш ввід, особистий контекст для персоналізації) передається безпосередньо з пристрою до обраного провайдера по HTTPS.</li>
+    <li>Кожен провайдер має власну політику конфіденційності щодо збереження і використання цього тексту. Ми не контролюємо їх обробку.</li>
+    <li>Ми не виступаємо посередником, не логуємо запити і не маємо доступу до ваших промптів чи відповідей.</li>
+    <li>Жоден AI-запит не виконується без вашої свідомої дії.</li>
+    <li>Ви можете перемкнутись на on-device режим (§4) — у такому разі нічого не покидає пристрій.</li>
+</ul>
+
+<h2>3a. Голосовий ввід (розпізнавання мовлення)</h2>
+<p>Практика мовлення і roleplay дозволяють відповідати голосом. Аудіо з мікрофона використовується <strong>лише поки ви безпосередньо у голосовій вправі</strong> і ніколи не зберігається й не вивантажується нами.</p>
+<ul>
+    <li><strong>Офлайн-розпізнавач (за замовчуванням, коли доступний):</strong> застосунок одноразово завантажує невелику відкриту модель Vosk (~40 МБ) з alphacephei.com, після чого все розпізнавання відбувається повністю на пристрої. Аудіо не покидає пристрій.</li>
+    <li><strong>Системний розпізнавач (резерв):</strong> поки офлайн-модель не завантажилась, застосунок використовує вбудований сервіс speech-to-text вашого пристрою (на більшості телефонів — Google). У такому разі аудіо обробляється цим системним сервісом за його власною політикою. Ми не отримуємо і не зберігаємо аудіо.</li>
+    <li>Розпізнавання працює лише коли ви починаєте голосову вправу, і зупиняється з її завершенням.</li>
+</ul>
+
+<h2>3b. Необовʼязковий пошук зображень (Unsplash)</h2>
+<p>Якщо ви ввели власний ключ Unsplash, застосунок може підвантажити ілюстративне фото для слова, надіславши це одне слово як пошуковий запит до Unsplash (api.unsplash.com) по HTTPS. Без ключа запити зображень не виконуються. Жодних інших даних до Unsplash ми не надсилаємо.</p>
+
+<h2>3c. Зовнішні застосунки, які ви відкриваєте</h2>
+<p>З меню виділення тексту ви можете відкрити обраний текст у зовнішньому застосунку (напр. Google Translate, словник чи браузер). Тоді обраний текст передається тому застосунку через Android-intent. Це відбувається лише за вашим явним натисканням, а застосунок-отримувач обробляє текст за власною політикою.</p>
+
+<h2>4. On-device AI (Gemma 3n)</h2>
+<p>Застосунок підтримує повністю офлайн-режим через Google Gemma 3n, що працює через MediaPipe LiteRT на CPU пристрою. У цьому режимі:</p>
+<ul>
+    <li>Модель (~3–4 ГБ) одноразово завантажується з HuggingFace у локальне сховище застосунку.</li>
+    <li>Уся генерація відбувається на CPU. Жоден промпт чи відповідь не передаються назовні.</li>
+    <li>У Settings можна увімкнути auto-offline — застосунок автоматично переходить на on-device, коли немає Інтернету.</li>
+</ul>
+
+<h2>5. Дозволи</h2>
+<ul>
+    <li><strong>Інтернет:</strong> тільки для звернення до обраного хмарного провайдера і завантаження моделі Gemma.</li>
+    <li><strong>Камера:</strong> тільки для фото тексту з підручника / зошита для OCR. Фото обробляються на пристрої через Google ML Kit і не вивантажуються.</li>
+    <li><strong>Мікрофон (запис аудіо):</strong> тільки для практики мовлення та roleplay, поки активна голосова вправа. Як транскрибується мовлення — див. §3a.</li>
+    <li><strong>Сховище / зображення:</strong> тільки для читання файлів, які ви свідомо обираєте для імпорту.</li>
+    <li><strong>Сповіщення:</strong> для нагадувань про повторення та прогрес.</li>
+    <li><strong>Фоновий сервіс:</strong> щоб довгі операції (завантаження моделі, прелоад уроків, групування слів) не переривались у фоні.</li>
+    <li><strong>Boot completed:</strong> тільки щоб перепланувати нагадування після перезавантаження пристрою.</li>
+    <li><strong>Vibrate:</strong> тактильний відгук на відповіді.</li>
+</ul>
+
+<h2>6. Звіти про збої</h2>
+<p>Застосунок може містити Sentry SDK для анонімних звітів про збої. Звіти містять:</p>
+<ul>
+    <li>Stack trace збою</li>
+    <li>Модель пристрою, версію Android, версію застосунку</li>
+    <li>Анонімний user-id, згенерований локально Sentry (не повʼязаний з імʼям/email)</li>
+</ul>
+<p>Звіти НЕ містять: контенту уроків, словника, API-ключів, фото, імпортованих файлів, особистих даних профілю.</p>
+<p>Звіти можна вимкнути будь-коли: Settings → Конфіденційність → Звіти про збої.</p>
+
+<h2>6a. Необовʼязкова хмарна синхронізація (вхід через Google)</h2>
+<p>Хмарна синхронізація <strong>вимкнена, доки ви не увійдете</strong> в Налаштування → Резервна копія. Якщо ви входите через Google-акаунт:</p>
+<ul>
+    <li><strong>Що зберігається на нашому сервері (Supabase, регіон ЄС):</strong> ваш email та ідентифікатор акаунта; копія навчальних даних (словник, прогрес повторень, результати вправ, уроки, збережене, імпортовані тексти/книги, історія AI-чату й голосових діалогів, серія та статистика, пройдені теми) і налаштування вигляду читалки.</li>
+    <li><strong>Ніколи не вивантажується:</strong> API-ключі AI-провайдерів, завантажені моделі AI/мовлення, аудіо аудіокниг, оригінальні PDF-файли.</li>
+    <li><strong>Мета:</strong> лише резервна копія та синхронізація між вашими пристроями. Дані не використовуються для реклами, профілювання чи навчання AI, не продаються й не передаються третім особам.</li>
+    <li><strong>Безпека:</strong> шифрування під час передачі (HTTPS); доступ обмежено на рівні рядків, тож бачите свої дані лише ви. Зберігається до 5 останніх копій.</li>
+    <li><strong>Видалення:</strong> Налаштування → Резервна копія → Видалити з хмари: лише копії або акаунт разом з усіма даними, одразу. Також можна попросити видалення листом (див. Контакти). Дані на телефоні при цьому не зачіпаються.</li>
+</ul>
+
+<h2>7. Зберігання і безпека</h2>
+<ul>
+    <li>Дані юзера зберігаються локально на пристрої; у хмару вони копіюються лише якщо ви ввімкнули хмарну синхронізацію (розділ 6a).</li>
+    <li>API-ключі шифруються AES-256-GCM, з ключем в Android Keystore (з апаратною підтримкою де доступно).</li>
+    <li>Системний бекап Android вимкнено, тож ваші дані не вивантажуються в Google Drive автоматично. Єдина хмарна копія: необовʼязкова синхронізація з розділу 6a.</li>
+    <li>Видалення застосунку видаляє всі локальні дані.</li>
+</ul>
+
+<h2>8. Діти</h2>
+<p>Застосунок не призначений для дітей до 13 років. AI-чат може генерувати контент, неприйнятний для молодшої аудиторії. Якщо застосунком користується дитина — рекомендується нагляд батьків. Ми свідомо не збираємо персональних даних від дітей до 13.</p>
+
+<h2>9. Ваші права</h2>
+<ul>
+    <li><strong>Доступ і експорт:</strong> Settings → Експорт містить ваш профіль і словник для скачування.</li>
+    <li><strong>Видалення:</strong> Settings → Профіль → Видалити профіль або видалення застосунку (локальні дані). Хмарні дані: Налаштування → Резервна копія → Видалити з хмари, або напишіть нам.</li>
+    <li><strong>Відмова від звітів про збої:</strong> Settings → Конфіденційність → Звіти про збої.</li>
+    <li><strong>Зупинка хмарного AI:</strong> перейти в on-device режим у Settings → AI-провайдер.</li>
+</ul>
+
+<h2>10. Зміни</h2>
+<p>Ми можемо оновлювати цю Політику. Зміни публікуються на цій сторінці з оновленою датою чинності. Про істотні зміни ми повідомимо в самому застосунку.</p>
+
+<h2>11. Контакти</h2>
+<p>Запитання: <a href="mailto:linkalng96@gmail.com">linkalng96@gmail.com</a></p>
+
+<div class="footer">
+    <p>&copy; 2026 Linka by Illia Sobcko. All rights reserved. / Усі права захищено.</p>
+</div>
+
+</div>
+</body>
+</html>
