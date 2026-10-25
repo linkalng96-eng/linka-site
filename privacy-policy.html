@@ -26,12 +26,12 @@
 
 <a id="en"></a>
 <h1>Privacy Policy</h1>
-<p class="date">Effective date: 2026-06-19</p>
+<p class="date">Effective date: 2026-10-25</p>
 
 <p>Linka ("the App") is an English language learning application developed by Illia Sobcko ("we", "us"). This Privacy Policy describes how your information is handled when you use the App.</p>
 
 <h2>1. Summary</h2>
-<p>Linka is a privacy-first application. <strong>We do not operate any servers, do not collect analytics, and do not sell or share user data.</strong> Almost all data stays on your device. The only exceptions are: (a) lesson content you choose to generate via a third-party cloud AI provider, (b) speech you record for the voice-conversation feature, which — until the offline recognizer is downloaded — is transcribed by your device's system speech service (typically Google), (c) image searches you trigger if you supply an Unsplash key, and (d) anonymous crash reports if you do not opt out (see §6).</p>
+<p>Linka is a privacy-first application. <strong>We do not show ads, and we do not sell or share user data.</strong> Almost all data stays on your device. The only exceptions are: (a) lesson content you choose to generate via a third-party cloud AI provider, (b) speech you record for the voice-conversation feature, which — until the offline recognizer is downloaded — is transcribed by your device's system speech service (typically Google), (c) image searches you trigger if you supply an Unsplash key, (d) technical crash reports and anonymous usage statistics, which you can turn off (see §6, §6b), and (e) a copy of your learning data on our server, only if you sign in for cloud sync (see §6a).</p>
 
 <h2>2. Information Stored Locally on Your Device</h2>
 <ul>
@@ -45,7 +45,8 @@
 </ul>
 
 <h2>3. Third-Party Cloud AI Providers</h2>
-<p>The App can connect to one of the following AI providers <strong>only if you provide your own API key</strong>:</p>
+<p><strong>Without your own key (default):</strong> AI requests for text and photo recognition go through our server (Supabase, EU region), which forwards them to Google Gemini under our account and returns the answer. Our server does not store the content of your requests or the answers; it only keeps a daily request counter per account (your Google sign-in, or an anonymous session the App creates automatically) to enforce a free daily limit. Google processes the request under its Gemini API terms.</p>
+<p><strong>With your own key:</strong> the App can instead connect directly to one of the following AI providers:</p>
 <ul>
     <li>Google Gemini (gemini.google.com)</li>
     <li>OpenAI (openai.com)</li>
@@ -55,9 +56,9 @@
 </ul>
 <p>When you generate a lesson, exercise, hint, translation, or AI chat reply with a cloud provider:</p>
 <ul>
-    <li>The text of your request (vocabulary, topic name, your input, your profile summary used for personalization) is transmitted directly from your device to the chosen provider over HTTPS.</li>
+    <li>The text of your request (vocabulary, topic name, your input, your profile summary used for personalization) is transmitted over HTTPS — directly to the chosen provider when you use your own key, or through our server as described above.</li>
     <li>Each provider has its own privacy policy governing retention and use of that text. We have no control over their handling.</li>
-    <li>We do not act as an intermediary, we do not log requests, and we cannot read your prompts or responses.</li>
+    <li>We do not log or keep the content of AI requests or responses.</li>
     <li>No AI request is made without an action you initiate.</li>
     <li>You can switch to the on-device provider at any time (see §4) — no data leaves your device in that mode.</li>
 </ul>
@@ -76,17 +77,17 @@
 <h2>3c. External Apps You Choose to Open</h2>
 <p>From the text-selection menu you may choose to open selected text in an external app (e.g. Google Translate, a dictionary, or your browser). When you do, the selected text is handed to that app via an Android intent. This only happens on your explicit tap, and the receiving app handles the text under its own policy.</p>
 
-<h2>4. On-Device AI (Gemma 3n)</h2>
-<p>The App supports fully offline AI inference using Google's Gemma 3n model running through MediaPipe LiteRT on your device's CPU. When you choose on-device mode:</p>
+<h2>4. On-Device AI</h2>
+<p>The App supports fully offline AI inference with an open model (Google Gemma or Qwen) running through Google's LiteRT-LM on your device. When you choose on-device mode:</p>
 <ul>
-    <li>The model file (~3–4 GB) is downloaded once from HuggingFace to your device's app storage.</li>
+    <li>The model file (~1–3.5 GB) is downloaded once from HuggingFace to your device's app storage.</li>
     <li>All generation happens locally on your CPU. No prompts, no responses, and no metadata leave your device.</li>
     <li>You can enable automatic offline fallback in Settings — the App will route requests to the on-device model whenever your device is offline.</li>
 </ul>
 
 <h2>5. Permissions</h2>
 <ul>
-    <li><strong>Internet:</strong> only to call the cloud AI provider you selected and to download the Gemma model.</li>
+    <li><strong>Internet:</strong> to call the cloud AI provider you selected, to download offline models, to sync your data if you signed in (§6a) and to send crash reports (§6).</li>
     <li><strong>Camera:</strong> only for capturing photos of text (homework, textbook pages) for OCR. Photos are processed on-device by Google ML Kit and are not uploaded.</li>
     <li><strong>Microphone (Record audio):</strong> only for the speaking-practice and roleplay features, while a voice exercise is active. See §3a for how speech is transcribed.</li>
     <li><strong>Storage / Media images:</strong> only to read files you choose to import for learning content.</li>
@@ -97,23 +98,27 @@
 </ul>
 
 <h2>6. Crash Reporting</h2>
-<p>The App may include Sentry SDK for anonymous crash reports. Crash reports help us fix bugs and contain:</p>
+<p>If the App closes because of an error, on the next launch it sends a technical crash report to our server (Supabase, EU region). Crash reports help us fix bugs and contain:</p>
 <ul>
-    <li>Stack trace of the crash</li>
-    <li>Device model, Android version, App version</li>
-    <li>Anonymous user ID generated locally by Sentry (not tied to your name or email)</li>
+    <li>Stack trace of the crash and the App's own technical log from the last minutes before it</li>
+    <li>The names of the last screens you opened</li>
+    <li>Device model, Android version, App version, interface language, level and network type</li>
+    <li>A random install ID generated by the App; if you are signed in for cloud sync, also your account ID</li>
 </ul>
-<p>Crash reports never contain: your lesson content, vocabulary, API keys, photos, files you imported, or personal profile details.</p>
-<p>You can disable crash reporting at any time in Settings → Privacy → Crash reporting.</p>
+<p>Crash reports do not include your vocabulary, notes, imported files, photos, API keys or profile details. The technical log is written for debugging and is not meant to hold your content, but it may occasionally include a fragment of text the App was processing at the moment of the error.</p>
+<p>Reports are used only to fix bugs and are deleted after 90 days. You can turn them off at any time in Settings → Appearance &amp; reading → Send crash reports.</p>
+
+<h2>6b. Usage Statistics</h2>
+<p>When AI goes through our server, the App sends us a little usage information so that we can see how learners use it and what it costs to run: once a day your level, interface and learning languages, App version and device model; and short events such as «App opened» or «lesson finished» with its score and number of exercises. For each AI request the server records the model, the number of tokens, the time it took and its type (text, photo or voice) — not the content of the request or the answer. Statistics never include your texts, answers, vocabulary, notes or photos. They are linked to your account or to the anonymous session the App creates, and are turned off together with crash reports in Settings → Appearance &amp; reading → Send crash reports. During the beta the App may ask you twice (on day 3 and day 7) for a star rating and two optional short answers; they are sent only if you press «Send».</p>
 
 <h2>6a. Optional Cloud Sync (Sign in with Google)</h2>
-<p>Cloud sync is <strong>off unless you sign in</strong> under Settings → Backup. If you sign in with your Google account:</p>
+<p>Cloud sync is <strong>off unless you sign in</strong> on the «Account &amp; data» card at the top of Settings. If you sign in with your Google account:</p>
 <ul>
-    <li><strong>What is stored on our server (Supabase, EU region):</strong> your email address and an account identifier; a copy of your learning data (vocabulary, review progress, exercise results, lessons, saved items, texts/books you imported, AI-chat and voice-dialog history, streak and statistics, completed topics) and reader appearance settings.</li>
+    <li><strong>What is stored on our server (Supabase, EU region):</strong> your name, email address and an account identifier from Google; a copy of your learning data (vocabulary, review progress, exercise results, lessons, saved items, homework, lesson notebook notes and the photos/screenshots you added to them, texts/books you imported, AI-chat and voice-dialog history, what you are learning and the mistakes you made, streak and statistics, completed topics) and reader appearance settings.</li>
     <li><strong>Never uploaded:</strong> AI provider API keys, downloaded AI/speech models, generated audiobook audio, original PDF files.</li>
     <li><strong>Purpose:</strong> only to back up your data and keep it in sync across your devices. It is not used for advertising, profiling or AI training, and is not sold or shared.</li>
     <li><strong>Security:</strong> encrypted in transit (HTTPS); access is restricted per account by row-level security so only you can read your data. Up to the 5 most recent snapshots are kept.</li>
-    <li><strong>Deletion:</strong> Settings → Backup → Delete from cloud lets you delete the cloud copies only, or your cloud account together with all its data, immediately. You can also request deletion by email (see Contact). Local data on your phone is not affected.</li>
+    <li><strong>Deletion:</strong> Settings → «Account &amp; data» → Backup → Delete from cloud lets you delete the cloud copies only, or your cloud account together with all its data, immediately. You can also request deletion by email (see Contact). Local data on your phone is not affected.</li>
 </ul>
 
 <h2>7. Data Storage and Security</h2>
@@ -130,8 +135,8 @@
 <h2>9. Your Rights</h2>
 <ul>
     <li><strong>Access &amp; export:</strong> Settings → Export contains your full profile and vocabulary as a downloadable file.</li>
-    <li><strong>Deletion:</strong> Settings → Profile → Delete profile removes all local data. Uninstalling the App removes everything stored on the device. Cloud data: Settings → Backup → Delete from cloud, or email us.</li>
-    <li><strong>Opt-out of crash reports:</strong> Settings → Privacy → Crash reporting.</li>
+    <li><strong>Deletion:</strong> Settings → Profile → Delete profile removes all local data. Uninstalling the App removes everything stored on the device. Cloud data: Settings → «Account &amp; data» → Backup → Delete from cloud, or email us.</li>
+    <li><strong>Opt-out of crash reports:</strong> Settings → Appearance &amp; reading → Send crash reports.</li>
     <li><strong>Stop cloud AI:</strong> Switch to on-device mode in Settings → AI provider.</li>
 </ul>
 
@@ -145,12 +150,12 @@
 
 <a id="uk"></a>
 <h1>Політика конфіденційності</h1>
-<p class="date">Чинна з: 2026-06-19</p>
+<p class="date">Чинна з: 2026-10-25</p>
 
 <p>Linka («Застосунок») — це застосунок для вивчення англійської мови, розроблений Іллею Собцко («ми»). Ця Політика описує, як обробляється ваша інформація при використанні Застосунку.</p>
 
 <h2>1. Коротко</h2>
-<p>Linka — застосунок, що ставить приватність на перше місце. <strong>Ми не маємо власних серверів, не збираємо аналітику і не продаємо ваші дані.</strong> Майже всі дані залишаються на вашому пристрої. Винятки: (а) контент уроків, який ви свідомо генеруєте через хмарного AI-провайдера, (б) мовлення, яке ви записуєте для голосової практики — поки не завантажиться офлайн-розпізнавач, його транскрибує системний сервіс розпізнавання мовлення вашого пристрою (зазвичай Google), (в) пошук зображень, якщо ви ввели ключ Unsplash, і (г) анонімні звіти про збої, якщо ви не вимкнули їх (див. §6).</p>
+<p>Linka — застосунок, що ставить приватність на перше місце. <strong>Ми не показуємо рекламу і не продаємо ваші дані.</strong> Майже всі дані залишаються на вашому пристрої. Винятки: (а) контент уроків, який ви свідомо генеруєте через хмарного AI-провайдера, (б) мовлення, яке ви записуєте для голосової практики — поки не завантажиться офлайн-розпізнавач, його транскрибує системний сервіс розпізнавання мовлення вашого пристрою (зазвичай Google), (в) пошук зображень, якщо ви ввели ключ Unsplash, (г) технічні звіти про збої та анонімна статистика використання, які можна вимкнути (див. §6, §6b), і (ґ) копія навчальних даних на нашому сервері — лише якщо ви увійшли для хмарної синхронізації (див. §6a).</p>
 
 <h2>2. Дані, що зберігаються локально</h2>
 <ul>
@@ -164,7 +169,8 @@
 </ul>
 
 <h2>3. Хмарні AI-провайдери</h2>
-<p>Застосунок може звертатися до одного з провайдерів <strong>тільки якщо ви ввели власний API-ключ</strong>:</p>
+<p><strong>Без власного ключа (за замовчуванням):</strong> AI-запити для тексту й розпізнавання фото йдуть через наш сервер (Supabase, регіон ЄС), який передає їх у Google Gemini від нашого акаунта і повертає відповідь. Сервер не зберігає вміст запитів і відповідей; він лише рахує кількість запитів за день на акаунт (ваш вхід через Google або анонімна сесія, яку застосунок створює сам), щоб дотримати безкоштовний денний ліміт. Google обробляє запит за умовами Gemini API.</p>
+<p><strong>З власним ключем:</strong> застосунок може звертатися напряму до одного з провайдерів:</p>
 <ul>
     <li>Google Gemini</li>
     <li>OpenAI</li>
@@ -174,9 +180,9 @@
 </ul>
 <p>Коли ви генеруєте урок, вправу, переклад, підказку або відповідь чату через хмарного провайдера:</p>
 <ul>
-    <li>Текст запиту (слова, тема, ваш ввід, особистий контекст для персоналізації) передається безпосередньо з пристрою до обраного провайдера по HTTPS.</li>
+    <li>Текст запиту (слова, тема, ваш ввід, особистий контекст для персоналізації) передається по HTTPS — напряму до обраного провайдера, якщо ключ ваш, або через наш сервер, як описано вище.</li>
     <li>Кожен провайдер має власну політику конфіденційності щодо збереження і використання цього тексту. Ми не контролюємо їх обробку.</li>
-    <li>Ми не виступаємо посередником, не логуємо запити і не маємо доступу до ваших промптів чи відповідей.</li>
+    <li>Ми не логуємо і не зберігаємо вміст AI-запитів чи відповідей.</li>
     <li>Жоден AI-запит не виконується без вашої свідомої дії.</li>
     <li>Ви можете перемкнутись на on-device режим (§4) — у такому разі нічого не покидає пристрій.</li>
 </ul>
@@ -195,17 +201,17 @@
 <h2>3c. Зовнішні застосунки, які ви відкриваєте</h2>
 <p>З меню виділення тексту ви можете відкрити обраний текст у зовнішньому застосунку (напр. Google Translate, словник чи браузер). Тоді обраний текст передається тому застосунку через Android-intent. Це відбувається лише за вашим явним натисканням, а застосунок-отримувач обробляє текст за власною політикою.</p>
 
-<h2>4. On-device AI (Gemma 3n)</h2>
-<p>Застосунок підтримує повністю офлайн-режим через Google Gemma 3n, що працює через MediaPipe LiteRT на CPU пристрою. У цьому режимі:</p>
+<h2>4. On-device AI</h2>
+<p>Застосунок підтримує повністю офлайн-режим з відкритою моделлю (Google Gemma або Qwen), що працює через Google LiteRT-LM на вашому пристрої. У цьому режимі:</p>
 <ul>
-    <li>Модель (~3–4 ГБ) одноразово завантажується з HuggingFace у локальне сховище застосунку.</li>
+    <li>Модель (~1–3,5 ГБ) одноразово завантажується з HuggingFace у локальне сховище застосунку.</li>
     <li>Уся генерація відбувається на CPU. Жоден промпт чи відповідь не передаються назовні.</li>
     <li>У Settings можна увімкнути auto-offline — застосунок автоматично переходить на on-device, коли немає Інтернету.</li>
 </ul>
 
 <h2>5. Дозволи</h2>
 <ul>
-    <li><strong>Інтернет:</strong> тільки для звернення до обраного хмарного провайдера і завантаження моделі Gemma.</li>
+    <li><strong>Інтернет:</strong> для звернення до обраного хмарного AI-провайдера, завантаження офлайн-моделей, синхронізації даних, якщо ви увійшли (§6a), і надсилання звітів про збої (§6).</li>
     <li><strong>Камера:</strong> тільки для фото тексту з підручника / зошита для OCR. Фото обробляються на пристрої через Google ML Kit і не вивантажуються.</li>
     <li><strong>Мікрофон (запис аудіо):</strong> тільки для практики мовлення та roleplay, поки активна голосова вправа. Як транскрибується мовлення — див. §3a.</li>
     <li><strong>Сховище / зображення:</strong> тільки для читання файлів, які ви свідомо обираєте для імпорту.</li>
@@ -216,23 +222,27 @@
 </ul>
 
 <h2>6. Звіти про збої</h2>
-<p>Застосунок може містити Sentry SDK для анонімних звітів про збої. Звіти містять:</p>
+<p>Якщо застосунок закрився через помилку, під час наступного запуску він надсилає технічний звіт на наш сервер (Supabase, регіон ЄС). Звіти допомагають лагодити помилки й містять:</p>
 <ul>
-    <li>Stack trace збою</li>
-    <li>Модель пристрою, версію Android, версію застосунку</li>
-    <li>Анонімний user-id, згенерований локально Sentry (не повʼязаний з імʼям/email)</li>
+    <li>Stack trace збою і технічний журнал самого застосунку за останні хвилини перед ним</li>
+    <li>Назви кількох останніх відкритих екранів</li>
+    <li>Модель пристрою, версію Android, версію застосунку, мову інтерфейсу, рівень і тип мережі</li>
+    <li>Випадковий ідентифікатор встановлення, згенерований застосунком; якщо ви увійшли для хмарної синхронізації — також ідентифікатор акаунта</li>
 </ul>
-<p>Звіти НЕ містять: контенту уроків, словника, API-ключів, фото, імпортованих файлів, особистих даних профілю.</p>
-<p>Звіти можна вимкнути будь-коли: Settings → Конфіденційність → Звіти про збої.</p>
+<p>Звіти не містять вашого словника, конспектів, імпортованих файлів, фото, API-ключів чи даних профілю. Технічний журнал призначений для налагодження і не зберігає ваш контент навмисно, але зрідка може містити фрагмент тексту, який застосунок обробляв у момент помилки.</p>
+<p>Звіти використовуються лише для виправлення помилок і видаляються через 90 днів. Вимкнути їх можна будь-коли: Налаштування → Вигляд і читання → Надсилати звіти про збої.</p>
+
+<h2>6b. Статистика використання</h2>
+<p>Коли AI працює через наш сервер, застосунок надсилає нам трохи інформації про використання, щоб ми бачили, як учні ним користуються і скільки коштує його робота: раз на день — ваш рівень, мову інтерфейсу й мову вивчення, версію застосунку й модель пристрою; і короткі події на кшталт «застосунок відкрито» чи «урок завершено» (з результатом і кількістю вправ). Для кожного AI-запиту сервер записує модель, кількість токенів, час і тип (текст, фото чи голос) — але не вміст запиту чи відповіді. Статистика ніколи не містить ваших текстів, відповідей, слів, конспектів чи фото. Вона повʼязана з вашим акаунтом або з анонімною сесією, яку створює застосунок, і вимикається разом зі звітами про збої: Налаштування → Вигляд і читання → Надсилати звіти про збої. Під час бета-тесту застосунок може двічі (на 3-й і 7-й день) попросити оцінку зірками й дві необовʼязкові короткі відповіді; вони надсилаються лише якщо ви натиснете «Надіслати».</p>
 
 <h2>6a. Необовʼязкова хмарна синхронізація (вхід через Google)</h2>
-<p>Хмарна синхронізація <strong>вимкнена, доки ви не увійдете</strong> в Налаштування → Резервна копія. Якщо ви входите через Google-акаунт:</p>
+<p>Хмарна синхронізація <strong>вимкнена, доки ви не увійдете</strong> на картці «Акаунт і дані» вгорі Налаштувань. Якщо ви входите через Google-акаунт:</p>
 <ul>
-    <li><strong>Що зберігається на нашому сервері (Supabase, регіон ЄС):</strong> ваш email та ідентифікатор акаунта; копія навчальних даних (словник, прогрес повторень, результати вправ, уроки, збережене, імпортовані тексти/книги, історія AI-чату й голосових діалогів, серія та статистика, пройдені теми) і налаштування вигляду читалки.</li>
+    <li><strong>Що зберігається на нашому сервері (Supabase, регіон ЄС):</strong> ваше імʼя, email та ідентифікатор акаунта від Google; копія навчальних даних (словник, прогрес повторень, результати вправ, уроки, збережене, домашні завдання, конспекти занять разом із доданими до них фото/скріншотами, імпортовані тексти/книги, історія AI-чату й голосових діалогів, що ви зараз вивчаєте і які помилки робили, серія та статистика, пройдені теми) і налаштування вигляду читалки.</li>
     <li><strong>Ніколи не вивантажується:</strong> API-ключі AI-провайдерів, завантажені моделі AI/мовлення, аудіо аудіокниг, оригінальні PDF-файли.</li>
     <li><strong>Мета:</strong> лише резервна копія та синхронізація між вашими пристроями. Дані не використовуються для реклами, профілювання чи навчання AI, не продаються й не передаються третім особам.</li>
     <li><strong>Безпека:</strong> шифрування під час передачі (HTTPS); доступ обмежено на рівні рядків, тож бачите свої дані лише ви. Зберігається до 5 останніх копій.</li>
-    <li><strong>Видалення:</strong> Налаштування → Резервна копія → Видалити з хмари: лише копії або акаунт разом з усіма даними, одразу. Також можна попросити видалення листом (див. Контакти). Дані на телефоні при цьому не зачіпаються.</li>
+    <li><strong>Видалення:</strong> Налаштування → «Акаунт і дані» → Резервна копія → Видалити з хмари: лише копії або акаунт разом з усіма даними, одразу. Також можна попросити видалення листом (див. Контакти). Дані на телефоні при цьому не зачіпаються.</li>
 </ul>
 
 <h2>7. Зберігання і безпека</h2>
@@ -249,8 +259,8 @@
 <h2>9. Ваші права</h2>
 <ul>
     <li><strong>Доступ і експорт:</strong> Settings → Експорт містить ваш профіль і словник для скачування.</li>
-    <li><strong>Видалення:</strong> Settings → Профіль → Видалити профіль або видалення застосунку (локальні дані). Хмарні дані: Налаштування → Резервна копія → Видалити з хмари, або напишіть нам.</li>
-    <li><strong>Відмова від звітів про збої:</strong> Settings → Конфіденційність → Звіти про збої.</li>
+    <li><strong>Видалення:</strong> Settings → Профіль → Видалити профіль або видалення застосунку (локальні дані). Хмарні дані: Налаштування → «Акаунт і дані» → Резервна копія → Видалити з хмари, або напишіть нам.</li>
+    <li><strong>Відмова від звітів про збої:</strong> Налаштування → Вигляд і читання → Надсилати звіти про збої.</li>
     <li><strong>Зупинка хмарного AI:</strong> перейти в on-device режим у Settings → AI-провайдер.</li>
 </ul>
 
