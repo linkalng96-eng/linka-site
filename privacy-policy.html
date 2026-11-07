@@ -26,12 +26,12 @@
 
 <a id="en"></a>
 <h1>Privacy Policy</h1>
-<p class="date">Effective date: 2026-10-25</p>
+<p class="date">Effective date: 2026-11-07</p>
 
 <p>Linka ("the App") is an English language learning application developed by Illia Sobcko ("we", "us"). This Privacy Policy describes how your information is handled when you use the App.</p>
 
 <h2>1. Summary</h2>
-<p>Linka is a privacy-first application. <strong>We do not show ads, and we do not sell or share user data.</strong> Almost all data stays on your device. The only exceptions are: (a) lesson content you choose to generate via a third-party cloud AI provider, (b) speech you record for the voice-conversation feature, which — until the offline recognizer is downloaded — is transcribed by your device's system speech service (typically Google), (c) image searches you trigger if you supply an Unsplash key, (d) technical crash reports and anonymous usage statistics, which you can turn off (see §6, §6b), and (e) a copy of your learning data on our server, only if you sign in for cloud sync (see §6a).</p>
+<p>Linka is a privacy-first application. <strong>We do not show ads, and we do not sell or share user data.</strong> Almost all data stays on your device. The only exceptions are: (a) lesson content you choose to generate via a third-party cloud AI provider, (b) speech you record for the voice-conversation feature, which — until the offline recognizer is downloaded — is transcribed by your device's system speech service (typically Google), (c) image searches you trigger if you supply an Unsplash key, (d) technical crash reports and anonymous usage statistics, which you can turn off (see §6, §6b), (e) a copy of your learning data on our server, only if you sign in for cloud sync (see §6a), (f) a word and its meaning when the App asks our server for a picture of that word (see §3d), and (g) reports you choose to send us yourself (see §6c).</p>
 
 <h2>2. Information Stored Locally on Your Device</h2>
 <ul>
@@ -39,9 +39,10 @@
     <li>Vocabulary, flashcards, exercises, homework, and learning progress — stored locally</li>
     <li>Saved lesson sessions and the items you mark "to revisit" — stored locally</li>
     <li>API keys you provide for cloud AI services — stored in encrypted local storage (AES-256-GCM via Android Keystore)</li>
-    <li>Photos you capture for OCR text recognition — processed on-device by Google ML Kit; not uploaded</li>
+    <li>Photos you take or choose for text recognition (homework, class notes, textbook pages) — kept on your device; to read the text, the App sends the photo through our server to the AI when you are online (see §3), or reads it on-device with Google ML Kit when you are offline</li>
     <li>PDF / DOCX / PPTX / images you import for learning content — parsed locally</li>
     <li>Voice recordings for the speaking practice / roleplay feature — see §3a below for how speech is transcribed</li>
+    <li>Your own drawings of words («✏️ Draw it yourself») — kept only on this device, in your profile; never uploaded, synced or backed up</li>
 </ul>
 
 <h2>3. Third-Party Cloud AI Providers</h2>
@@ -59,7 +60,8 @@
     <li>The text of your request (vocabulary, topic name, your input, your profile summary used for personalization) is transmitted over HTTPS — directly to the chosen provider when you use your own key, or through our server as described above.</li>
     <li>Each provider has its own privacy policy governing retention and use of that text. We have no control over their handling.</li>
     <li>We do not log or keep the content of AI requests or responses.</li>
-    <li>No AI request is made without an action you initiate.</li>
+    <li>AI requests are made only for what you start yourself. While you are in a lesson, the App may prepare its next step in advance; pictures and the spoken sound of words you saved may also be prepared in the background (see §3d, §3e).</li>
+    <li><strong>What is on your screen:</strong> when you open the 🤖 AI chat from a screen, the App adds a short description of what you have open so the AI can help with it — for example the word on the card and your translation, the topic of the exercise, the phrase in a story lesson, or the summary of the class notes you are viewing (up to about 1,500 characters). It never sends a screenshot. The chat shows this as a label above the conversation; close the label and it is no longer sent.</li>
     <li>You can switch to the on-device provider at any time (see §4) — no data leaves your device in that mode.</li>
 </ul>
 
@@ -77,18 +79,24 @@
 <h2>3c. External Apps You Choose to Open</h2>
 <p>From the text-selection menu you may choose to open selected text in an external app (e.g. Google Translate, a dictionary, or your browser). When you do, the selected text is handed to that app via an Android intent. This only happens on your explicit tap, and the receiving app handles the text under its own policy.</p>
 
+<h2>3d. Word Pictures</h2>
+<p>Linka can show a picture for a word you learn. The App sends the word, its meaning as you saved it, and the language to our server (Supabase, EU region); the server has the picture drawn once by Google's image model and keeps it in a <strong>shared catalogue that every learner uses</strong>, so the same word and meaning get the same picture. The catalogue holds only the word, its meaning, a short scene description and the picture — not who asked for it. To enforce a daily limit, the server separately records that your account (or the App's anonymous session) asked for a picture, with its cost. Pictures are then kept on your device.</p>
+
+<h2>3e. Natural Voice (Text-to-Speech)</h2>
+<p>When the App reads something aloud in the natural voice (a word, a sentence, a dialog line, a lesson), it sends that text through our server to Google Gemini's speech model and plays the sound it returns. Our server does not keep the text or the sound; it only counts the request toward your daily limit. The sound of a word is saved on your device so it is not requested again. Without internet, or if you choose the phone's own voice, the App uses your device's built-in text-to-speech and nothing is sent.</p>
+
 <h2>4. On-Device AI</h2>
 <p>The App supports fully offline AI inference with an open model (Google Gemma or Qwen) running through Google's LiteRT-LM on your device. When you choose on-device mode:</p>
 <ul>
     <li>The model file (~1–3.5 GB) is downloaded once from HuggingFace to your device's app storage.</li>
-    <li>All generation happens locally on your CPU. No prompts, no responses, and no metadata leave your device.</li>
+    <li>All generation happens locally on your device's processor (CPU or GPU). No prompts, no responses, and no metadata leave your device.</li>
     <li>You can enable automatic offline fallback in Settings — the App will route requests to the on-device model whenever your device is offline.</li>
 </ul>
 
 <h2>5. Permissions</h2>
 <ul>
-    <li><strong>Internet:</strong> to call the cloud AI provider you selected, to download offline models, to sync your data if you signed in (§6a) and to send crash reports (§6).</li>
-    <li><strong>Camera:</strong> only for capturing photos of text (homework, textbook pages) for OCR. Photos are processed on-device by Google ML Kit and are not uploaded.</li>
+    <li><strong>Internet:</strong> to call the cloud AI provider you selected, to download offline models, to sync your data if you signed in (§6a) and to send crash reports (§6). To tell whether you are online, the App also opens Google's standard connectivity-check address (gstatic.com/generate_204) from time to time; nothing about you is sent with it.</li>
+    <li><strong>Camera:</strong> only for capturing photos of text (homework, class notes, textbook pages) to recognise the text — by the AI through our server when you are online, on-device by Google ML Kit when offline (see §2, §3).</li>
     <li><strong>Microphone (Record audio):</strong> only for the speaking-practice and roleplay features, while a voice exercise is active. See §3a for how speech is transcribed.</li>
     <li><strong>Storage / Media images:</strong> only to read files you choose to import for learning content.</li>
     <li><strong>Notifications:</strong> for spaced-repetition reminders and lesson progress notifications scheduled by you.</li>
@@ -106,10 +114,17 @@
     <li>A random install ID generated by the App; if you are signed in for cloud sync, also your account ID</li>
 </ul>
 <p>Crash reports do not include your vocabulary, notes, imported files, photos, API keys or profile details. The technical log is written for debugging and is not meant to hold your content, but it may occasionally include a fragment of text the App was processing at the moment of the error.</p>
-<p>Reports are used only to fix bugs and are deleted after 90 days. You can turn them off at any time in Settings → Appearance &amp; reading → Send crash reports.</p>
+<p>Reports are used only to fix bugs and are deleted after 90 days. You can turn them off at any time in Settings → Data and privacy → Send crash reports.</p>
 
 <h2>6b. Usage Statistics</h2>
-<p>When AI goes through our server, the App sends us a little usage information so that we can see how learners use it and what it costs to run: once a day your level, interface and learning languages, App version and device model; and short events such as «App opened» or «lesson finished» with its score and number of exercises. For each AI request the server records the model, the number of tokens, the time it took and its type (text, photo or voice) — not the content of the request or the answer. Statistics never include your texts, answers, vocabulary, notes or photos. They are linked to your account or to the anonymous session the App creates, and are turned off together with crash reports in Settings → Appearance &amp; reading → Send crash reports. During the beta the App may ask you twice (on day 3 and day 7) for a star rating and two optional short answers; they are sent only if you press «Send».</p>
+<p>When AI goes through our server, the App sends us a little usage information so that we can see how learners use it and what it costs to run: once a day your level, interface and learning languages, App version and device model; and short events such as «App opened» or «lesson finished» with its score and number of exercises. For each AI request the server records the model, the number of tokens, the time it took and its type (text, photo or voice) — not the content of the request or the answer. Statistics never include your texts, answers, vocabulary, notes or photos. They are linked to your account or to the anonymous session the App creates, and are turned off together with crash reports in Settings → Data and privacy → Send crash reports. During the beta the App may ask you twice (on day 3 and day 7) for a star rating and two optional short answers; they are sent only if you press «Send».</p>
+
+<h2>6c. Reports You Send Yourself</h2>
+<ul>
+    <li><strong>🚩 Report an AI answer:</strong> if an AI answer looks wrong or offensive, you can report it. The report contains the reason you choose, your optional comment and the text of that AI answer. It is sent only when you press «Send».</li>
+    <li><strong>🐞 Bug button (test builds only):</strong> in beta-test builds a 🐞 button lets testers send a bug report. It contains a screenshot of the screen you were on, your description, any pictures you choose to add from your gallery, and technical details (device model, Android and App version, memory, network type, App settings such as level and AI provider, the names of the last screens opened). It is sent only when you press «Send». The public release does not have this button.</li>
+</ul>
+<p>These reports are stored on our server (Supabase, EU region), used only to fix problems and improve the App, and deleted after 90 days.</p>
 
 <h2>6a. Optional Cloud Sync (Sign in with Google)</h2>
 <p>Cloud sync is <strong>off unless you sign in</strong> on the «Account &amp; data» card at the top of Settings. If you sign in with your Google account:</p>
@@ -136,7 +151,7 @@
 <ul>
     <li><strong>Access &amp; export:</strong> Settings → Export contains your full profile and vocabulary as a downloadable file.</li>
     <li><strong>Deletion:</strong> Settings → Profile → Delete profile removes all local data. Uninstalling the App removes everything stored on the device. Cloud data: Settings → «Account &amp; data» → Backup → Delete from cloud, or email us.</li>
-    <li><strong>Opt-out of crash reports:</strong> Settings → Appearance &amp; reading → Send crash reports.</li>
+    <li><strong>Opt-out of crash reports:</strong> Settings → Data and privacy → Send crash reports.</li>
     <li><strong>Stop cloud AI:</strong> Switch to on-device mode in Settings → AI provider.</li>
 </ul>
 
@@ -150,12 +165,12 @@
 
 <a id="uk"></a>
 <h1>Політика конфіденційності</h1>
-<p class="date">Чинна з: 2026-10-25</p>
+<p class="date">Чинна з: 2026-11-02</p>
 
 <p>Linka («Застосунок») — це застосунок для вивчення англійської мови, розроблений Іллею Собцко («ми»). Ця Політика описує, як обробляється ваша інформація при використанні Застосунку.</p>
 
 <h2>1. Коротко</h2>
-<p>Linka — застосунок, що ставить приватність на перше місце. <strong>Ми не показуємо рекламу і не продаємо ваші дані.</strong> Майже всі дані залишаються на вашому пристрої. Винятки: (а) контент уроків, який ви свідомо генеруєте через хмарного AI-провайдера, (б) мовлення, яке ви записуєте для голосової практики — поки не завантажиться офлайн-розпізнавач, його транскрибує системний сервіс розпізнавання мовлення вашого пристрою (зазвичай Google), (в) пошук зображень, якщо ви ввели ключ Unsplash, (г) технічні звіти про збої та анонімна статистика використання, які можна вимкнути (див. §6, §6b), і (ґ) копія навчальних даних на нашому сервері — лише якщо ви увійшли для хмарної синхронізації (див. §6a).</p>
+<p>Linka — застосунок, що ставить приватність на перше місце. <strong>Ми не показуємо рекламу і не продаємо ваші дані.</strong> Майже всі дані залишаються на вашому пристрої. Винятки: (а) контент уроків, який ви свідомо генеруєте через хмарного AI-провайдера, (б) мовлення, яке ви записуєте для голосової практики — поки не завантажиться офлайн-розпізнавач, його транскрибує системний сервіс розпізнавання мовлення вашого пристрою (зазвичай Google), (в) пошук зображень, якщо ви ввели ключ Unsplash, (г) технічні звіти про збої та анонімна статистика використання, які можна вимкнути (див. §6, §6b), (ґ) копія навчальних даних на нашому сервері — лише якщо ви увійшли для хмарної синхронізації (див. §6a), (д) слово і його значення, коли застосунок просить у нашого сервера картинку до цього слова (див. §3d), і (е) звіти, які ви самі вирішили нам надіслати (див. §6c).</p>
 
 <h2>2. Дані, що зберігаються локально</h2>
 <ul>
@@ -166,6 +181,7 @@
     <li>Фото для OCR — обробляються на пристрої через Google ML Kit і не вивантажуються</li>
     <li>PDF / DOCX / PPTX / зображення, які ви імпортуєте — парсяться локально</li>
     <li>Голосові записи для практики мовлення / roleplay — як саме транскрибується мовлення, див. §3a нижче</li>
+    <li>Ваші власні малюнки слів («✏️ Намалюй сам») — лише на цьому пристрої, у вашому профілі; ніколи не вивантажуються, не синхронізуються і не потрапляють у резервні копії</li>
 </ul>
 
 <h2>3. Хмарні AI-провайдери</h2>
@@ -184,6 +200,7 @@
     <li>Кожен провайдер має власну політику конфіденційності щодо збереження і використання цього тексту. Ми не контролюємо їх обробку.</li>
     <li>Ми не логуємо і не зберігаємо вміст AI-запитів чи відповідей.</li>
     <li>Жоден AI-запит не виконується без вашої свідомої дії.</li>
+    <li><strong>Що відкрито на екрані:</strong> коли ви відкриваєте 🤖 AI-чат з якогось екрана, застосунок додає короткий опис того, що у вас відкрито, щоб AI міг із цим допомогти, — наприклад, слово на картці і ваш переклад, тему вправи, фразу в уроці-історії або короткий зміст конспекту, який ви переглядаєте (до ~1500 символів). Знімок екрана не надсилається ніколи. Чат показує цей опис позначкою над розмовою; якщо закрити позначку, опис більше не надсилається.</li>
     <li>Ви можете перемкнутись на on-device режим (§4) — у такому разі нічого не покидає пристрій.</li>
 </ul>
 
@@ -200,6 +217,9 @@
 
 <h2>3c. Зовнішні застосунки, які ви відкриваєте</h2>
 <p>З меню виділення тексту ви можете відкрити обраний текст у зовнішньому застосунку (напр. Google Translate, словник чи браузер). Тоді обраний текст передається тому застосунку через Android-intent. Це відбувається лише за вашим явним натисканням, а застосунок-отримувач обробляє текст за власною політикою.</p>
+
+<h2>3d. Картинки до слів</h2>
+<p>Linka може показувати картинку до слова, яке ви вчите. Застосунок надсилає на наш сервер (Supabase, регіон ЄС) слово, його значення так, як ви його зберегли, і мову; сервер один раз малює картинку моделлю зображень Google і зберігає її у <strong>спільному каталозі, яким користуються всі учні</strong>, — тож те саме слово в тому самому значенні має ту саму картинку. У каталозі зберігаються лише слово, значення, короткий опис сцени і картинка — не те, хто її попросив. Щоб дотримати денний ліміт, сервер окремо записує, що ваш акаунт (або анонімна сесія застосунку) попросив картинку, і її вартість. Далі картинки зберігаються на вашому пристрої.</p>
 
 <h2>4. On-device AI</h2>
 <p>Застосунок підтримує повністю офлайн-режим з відкритою моделлю (Google Gemma або Qwen), що працює через Google LiteRT-LM на вашому пристрої. У цьому режимі:</p>
@@ -230,10 +250,17 @@
     <li>Випадковий ідентифікатор встановлення, згенерований застосунком; якщо ви увійшли для хмарної синхронізації — також ідентифікатор акаунта</li>
 </ul>
 <p>Звіти не містять вашого словника, конспектів, імпортованих файлів, фото, API-ключів чи даних профілю. Технічний журнал призначений для налагодження і не зберігає ваш контент навмисно, але зрідка може містити фрагмент тексту, який застосунок обробляв у момент помилки.</p>
-<p>Звіти використовуються лише для виправлення помилок і видаляються через 90 днів. Вимкнути їх можна будь-коли: Налаштування → Вигляд і читання → Надсилати звіти про збої.</p>
+<p>Звіти використовуються лише для виправлення помилок і видаляються через 90 днів. Вимкнути їх можна будь-коли: Налаштування → Дані і приватність → Надсилати звіти про збої.</p>
 
 <h2>6b. Статистика використання</h2>
-<p>Коли AI працює через наш сервер, застосунок надсилає нам трохи інформації про використання, щоб ми бачили, як учні ним користуються і скільки коштує його робота: раз на день — ваш рівень, мову інтерфейсу й мову вивчення, версію застосунку й модель пристрою; і короткі події на кшталт «застосунок відкрито» чи «урок завершено» (з результатом і кількістю вправ). Для кожного AI-запиту сервер записує модель, кількість токенів, час і тип (текст, фото чи голос) — але не вміст запиту чи відповіді. Статистика ніколи не містить ваших текстів, відповідей, слів, конспектів чи фото. Вона повʼязана з вашим акаунтом або з анонімною сесією, яку створює застосунок, і вимикається разом зі звітами про збої: Налаштування → Вигляд і читання → Надсилати звіти про збої. Під час бета-тесту застосунок може двічі (на 3-й і 7-й день) попросити оцінку зірками й дві необовʼязкові короткі відповіді; вони надсилаються лише якщо ви натиснете «Надіслати».</p>
+<p>Коли AI працює через наш сервер, застосунок надсилає нам трохи інформації про використання, щоб ми бачили, як учні ним користуються і скільки коштує його робота: раз на день — ваш рівень, мову інтерфейсу й мову вивчення, версію застосунку й модель пристрою; і короткі події на кшталт «застосунок відкрито» чи «урок завершено» (з результатом і кількістю вправ). Для кожного AI-запиту сервер записує модель, кількість токенів, час і тип (текст, фото чи голос) — але не вміст запиту чи відповіді. Статистика ніколи не містить ваших текстів, відповідей, слів, конспектів чи фото. Вона повʼязана з вашим акаунтом або з анонімною сесією, яку створює застосунок, і вимикається разом зі звітами про збої: Налаштування → Дані і приватність → Надсилати звіти про збої. Під час бета-тесту застосунок може двічі (на 3-й і 7-й день) попросити оцінку зірками й дві необовʼязкові короткі відповіді; вони надсилаються лише якщо ви натиснете «Надіслати».</p>
+
+<h2>6c. Звіти, які ви надсилаєте самі</h2>
+<ul>
+    <li><strong>🚩 Поскаржитись на відповідь AI:</strong> якщо відповідь AI здається хибною чи образливою, ви можете на неї поскаржитись. Скарга містить обрану вами причину, ваш необовʼязковий коментар і текст цієї відповіді AI. Надсилається лише після натискання «Надіслати».</li>
+    <li><strong>🐞 Кнопка звіту про помилку (лише тестові збірки):</strong> у збірках для бета-тестування кнопка 🐞 дає тестерам надіслати звіт. Він містить знімок екрана, на якому ви були, ваш опис і технічні дані (модель пристрою, версії Android і застосунку, памʼять, тип мережі, налаштування застосунку на кшталт рівня й AI-провайдера, назви останніх відкритих екранів). Надсилається лише після натискання «Надіслати». У публічній версії цієї кнопки немає.</li>
+</ul>
+<p>Ці звіти зберігаються на нашому сервері (Supabase, регіон ЄС), використовуються лише для виправлення проблем і покращення застосунку і видаляються через 90 днів.</p>
 
 <h2>6a. Необовʼязкова хмарна синхронізація (вхід через Google)</h2>
 <p>Хмарна синхронізація <strong>вимкнена, доки ви не увійдете</strong> на картці «Акаунт і дані» вгорі Налаштувань. Якщо ви входите через Google-акаунт:</p>
@@ -260,7 +287,7 @@
 <ul>
     <li><strong>Доступ і експорт:</strong> Settings → Експорт містить ваш профіль і словник для скачування.</li>
     <li><strong>Видалення:</strong> Settings → Профіль → Видалити профіль або видалення застосунку (локальні дані). Хмарні дані: Налаштування → «Акаунт і дані» → Резервна копія → Видалити з хмари, або напишіть нам.</li>
-    <li><strong>Відмова від звітів про збої:</strong> Налаштування → Вигляд і читання → Надсилати звіти про збої.</li>
+    <li><strong>Відмова від звітів про збої:</strong> Налаштування → Дані і приватність → Надсилати звіти про збої.</li>
     <li><strong>Зупинка хмарного AI:</strong> перейти в on-device режим у Settings → AI-провайдер.</li>
 </ul>
 
